@@ -26,20 +26,14 @@ class App extends Component {
     };
   }
   
-
-
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
+buttonClick=()=>{
+fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(data =>{
         console.log(data);
         let info=data.map((item)=>{
 
-if(item.id!=1){
-  
-
-
-
+if(item.userId===1){
    return (
 
             
@@ -52,13 +46,42 @@ if(item.id!=1){
               </div>
             
 
-            )
+            )      
+}  
+       })
         
+        this.setState({data:info});
+
+      })
+
+       .catch(error=>console.log("error",error));
+
+
 }
 
 
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data =>{
+        console.log(data);
+        let info=data.map((item)=>{
 
-         
+if(item.id!=1){
+   return (
+
+            
+              <div key={item.id} style={divStyle}>
+              <p style={pStyle}>{item.id}</p>
+                <p>{item.userId}</p>
+                <p>{item.title}</p>
+                <p>{item.body}</p>
+
+              </div>
+            
+
+            )      
+}  
        })
         
         this.setState({data:info});
@@ -74,6 +97,7 @@ if(item.id!=1){
     return (
       <div>
       <h1>ALL POSTS</h1>
+      <button type="submit" onClick={this.buttonClick}>MYPOSTS</button>
       {this.state.data}
       
       </div>
