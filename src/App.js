@@ -6,6 +6,16 @@ let pStyle = {
   color:'#00a3cc'
 };
 
+let divStyle={
+  backgroundColor:"grey",
+  textAlign:"center",
+  float:"left",
+  width:"200px",
+  height:"400px",
+  margin:"20px"
+  
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,17 +34,31 @@ class App extends Component {
       .then(data =>{
         console.log(data);
         let info=data.map((item)=>{
-          return (
-              <div key={item.id}>
+
+if(item.id!=1){
+  
+
+
+
+   return (
+
+            
+              <div key={item.id} style={divStyle}>
               <p style={pStyle}>{item.id}</p>
                 <p>{item.userId}</p>
                 <p>{item.title}</p>
                 <p>{item.body}</p>
 
               </div>
+            
 
             )
         
+}
+
+
+
+         
        })
         
         this.setState({data:info});
