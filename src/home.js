@@ -1,69 +1,106 @@
+import React, { Component } from 'react';
+import PostItem from './postItem.js';
 
-import React from 'react';
+let pStyle = {
+    fontSize: '15px',
+    textAlign: 'center',
+    color: '#00a3cc'
+};
 
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    };
-  }
+let divStyle = {
+    backgroundColor: "grey",
+    textAlign: "center",
+    float: "left",
+    width: "200px",
+    height: "400px",
+    margin: "20px"
 
-  componentDidMount() {
-    fetch("https://api.example.com/items")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.items
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
-
-  render() {
-    const { error, isLoaded, items } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <ul>
-          {items.map(item => (
-            <li key={item.name[]}>
-              {item.name} {item.price}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-  }
 }
-export default MyComponent;
+
+class Home extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: [],
+            buttonVisible:false
+
+        };
+    }
+
+    buttonClick = () => {
+      this.setState({buttonVisible:true})
+        fetch('https://jsonplaceholder.typicode.com/posts?userId=1')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                 this.setState({ data:data});
+               
+            })
+
+            .catch(error => console.log("error", error));
 
 
+    }
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                this.setState({ data:data});
 
+            })
+            .catch(error => console.log("error", error));
 
+    }
 
+onDelete=(e)=>{
+  let array=this.state.data;
+  console.log(array);
+  var deleteid=e.target.id;
+  console.log(deleteid);
+  var newarray=array.filter((del)=>
+{
 
-
-
-
-
-
-
-
+  if(del.id==deleteid)
+  {
+    return(del.id===deleteid);
+  }
+  else
+  {
+    return(del.id!==deleteid);
+  }
   
+  
+  
+
+});
+  console.log(newarray);
+  this.setState({data: newarray});
+  
+   //const newarray=array.find((id)
+        //array.id!==id;
+   //);
+    
+   //console.log(newarray);
+}
+
+
+
+    render() {
+
+        return (
+            <div>
+                 <h1>ALL POSTS</h1>
+                
+                        {this.state.data.map((item)=>{
+                              return <PostItem details={item} deleteInfo={this.onDelete}/>    
+                         })}
+                           <button type="submit" onClick={this.buttonClick} >MYPOSTS</button>
+                             
+           </div>
+        );
+    }
+}
+
+export default Home;
