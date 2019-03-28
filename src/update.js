@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PostItem from './postItem.js';
-import NewPost from './newPost.js';
-import Comments from './comments.js';
 
 let pStyle = {
     fontSize: '15px',
@@ -19,22 +17,19 @@ let divStyle = {
 
 }
 
-class Home extends Component {
+class Update extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             data: [],
-            buttonVisible:false,
-            newPostVisible:false,
-            comments:[]
+            buttonVisible:false
 
         };
     }
 
     buttonClick = () => {
-       this.setState({ newPostVisible:true});
-      this.setState({buttonVisible:true});
+      this.setState({buttonVisible:true})
         fetch('https://jsonplaceholder.typicode.com/posts?userId=1')
             .then(response => response.json())
             .then(data => {
@@ -92,7 +87,6 @@ onDelete=(e)=>{
 
 
 
-
     render() {
 
         return (
@@ -100,18 +94,13 @@ onDelete=(e)=>{
                  <h1>ALL POSTS</h1>
                 
                         {this.state.data.map((item)=>{
-                              return <PostItem details={item} deleteInfo={this.onDelete} />     
+                              return <PostItem details={item} deleteInfo={this.onDelete} />    
                          })}
-
                            <button type="submit" onClick={this.buttonClick} >MYPOSTS</button>
-                           
-
-                        {(this.state.newPostVisible===true?<NewPost/>:null)} 
-                           
-                            
+                             
            </div>
         );
     }
 }
 
-export default Home;
+export default Update;
