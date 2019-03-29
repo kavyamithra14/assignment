@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from './home.js';
 
-
-
+{/* On myposts button click displaying new post table*/}
 class NewPost extends React.Component{
 
 
@@ -38,10 +37,6 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 
 
 }
-
-
-
-
 
 
 
