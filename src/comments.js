@@ -1,7 +1,11 @@
 import React from 'react';
 import Home from './home.js';
 import PostItem from './postItem.js';
-{/*  On view comments button click,data received is displayed in Comments component*/}
+
+/*  On view comments button click,data received is displayed in Comments component*/
+
+
+
 const fulldata=(props)=>{
 console.log(props);
 if(props.length()>0){
@@ -15,14 +19,14 @@ else
 	console.log("no value");
 }
 
-{/*return item.map((comments)=>
+/*return item.map((comments)=>
 {
 
 	return comments.name[0];
 }
 
 
-	)*/}
+	)*/
 
 
 }

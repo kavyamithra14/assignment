@@ -23,9 +23,9 @@ class Home extends Component {
               this.state = {
 
                 data: [],
-                buttonVisible:false,  {/* Setting button for my posts only*/}
-                newPostVisible:false, {/* On myposts button click display add new post*/}
-                commentvalue:false,   {/*on view comments button click comments component appear*/}
+                buttonVisible:false,  /* Setting button for my posts only*/
+                newPostVisible:false, /* On myposts button click display add new post*/
+                commentvalue:false,   /*on view comments button click comments component appear*/
                 comments:[]
 
                             };
@@ -73,7 +73,7 @@ class Home extends Component {
                           }
 
 
-                        {/*Delete function */}
+                        /*Delete function */
 
 
       onDelete=(e)=>{
@@ -81,7 +81,7 @@ class Home extends Component {
               console.log(array);
               var deleteid=e.target.id;
               console.log(deleteid);
-                   {/* filtering data that is not deleteid         */}
+                   /* filtering data that is not deleteid         */
               var newarray=array.filter((del)=>
                 {
 
@@ -111,7 +111,7 @@ class Home extends Component {
 
 
 
-                          {/* View comments function  */}
+                          /* View comments function  */
 
 
 
@@ -124,7 +124,7 @@ class Home extends Component {
                                                           }
 
                                     );
-                    {/*fetching all comments*/}
+                    /*fetching all comments*/
                     fetch('https://jsonplaceholder.typicode.com/comments?postid='+e.target.id)
 
                           .then(response => response.json())
@@ -141,7 +141,7 @@ class Home extends Component {
                           var check=this.state.comments;
                           console.log(check);
                           var commentid=e.target.id;
-                          console.log(commentid);{/*clicked post id*/}
+                          console.log(commentid);              /*clicked post id*/
                           console.log("hello");
   
                   var newarray=check.find((comments)=>
